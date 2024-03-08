@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+        padding: 0;
+        }
+      .bg{
+        width: 100vw;
+        height: 100vh;
+        /* background-color: rgb(103, 71, 30); */
+        background: url(ani.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+      }
+      .box{
+        width: 900px;
+        height: 500px;
+        background-color: rgb(0,0, 0,0.8);
+        border-radius: 60px;
+        color: beige;
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        flex-direction: column;
+        
+      }
+      
+        
+        
+      
+      .box span{
+        font-size: 40px;
+        margin: 40px;
+
+      }
+      .quotes{
+        width: 700px;
+        height: 270px;
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .box button{
+        width: 400px;
+        height: 50px;
+      }
+    </style>
+</head>
+<body>
+<div class="bg">
+    <div class="box">
+       
+            <span>Anime Quote Generator</span>
+            <p class="quotes"></p>
+            <button id="btn">Generate</button>
+        
+    </div>
+
+</div>
+
+    
+
+<script>
+let generate = document.querySelector('#btn')
+let box = document.querySelector('#box')
+
+btn.addEventListener('click',(e)=>{
+    e.preventDefault()
+    
+    getmethod();
+})
+
+
+
+
+    let quote = document.querySelector('.quotes');
+    
+
+    async function getmethod() {
+        try {
+            let get = await fetch("https://animechan.xyz/api/random/anime?title=naruto", {
+                method: 'GET'
+            });
+
+            let getter = await get.json();
+
+            console.log(getter);
+            Quote(getter)
+           
+        } catch (error) {
+            console.log(error);
+        } 
+    }
+
+    function Quote(getter){
+      
+         
+        quote.innerHTML = ` Quote : ${getter.quote} 
+                              -${getter.character} ` 
+       
+
+        
+    }
+
+    
+</script>
+
+</body>
+</html>
